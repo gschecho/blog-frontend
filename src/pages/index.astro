@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Button from '../components/react/Button.jsx';
+import Card from '../components/react/Card.jsx';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const pageTitle = "Mi Proyecto Astro";
+const cards = [
+  {
+    title: "Astro 5",
+    description: "Astro es un framework web moderno que permite construir sitios web más rápidos con menos JavaScript. Combina lo mejor del renderizado del lado del servidor con las ventajas de los componentes de frameworks modernos como React.",
+    imageUrl: "https://placehold.co/600x400?text=Astro"
+  },
+  {
+    title: "React en Astro",
+    description: "Astro te permite usar componentes React, Vue, Svelte y otros en tu aplicación. Esto te da la flexibilidad de elegir la herramienta adecuada para cada parte de tu sitio web.",
+    imageUrl: "https://placehold.co/600x400?text=React"
+  },
+  {
+    title: "Tailwind CSS",
+    description: "Tailwind CSS es un framework de utilidades CSS que permite un desarrollo rápido mediante clases predefinidas. Se integra perfectamente con Astro y React para crear interfaces modernas y responsivas.",
+    imageUrl: "https://placehold.co/600x400?text=Tailwind"
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title={pageTitle}>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-6">
+      Bienvenido a mi proyecto Astro
+    </h1>
+    
+    <div class="flex justify-center mb-8">
+      <Button text="Haz clic aquí" client:load />
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {cards.map((card, index) => (
+        <Card 
+          title={card.title}
+          description={card.description}
+          imageUrl={card.imageUrl}
+          client:visible
+        />
+      ))}
+    </div>
+  </main>
 </Layout>
