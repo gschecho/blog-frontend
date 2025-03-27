@@ -1,0 +1,14 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import BlogPost from "../../../components/react/blog/BlogPost.astro";
+import { AuthProvider } from "../auth/AuthContext";
+
+const {slug} = Astro.params;
+---
+
+
+<Layout title="Blog">
+  <AuthProvider client:only="react">
+    <BlogPost client:only="react" slug={slug} />
+  </AuthProvider>
+</Layout>

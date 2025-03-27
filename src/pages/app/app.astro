@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import App from "../../components/react/App.astro";
+
+---
+<Layout title="React App">
+    <h1>React App</h1>
+    <p>¡Hola! Esta es una aplicación de React.</p>
+    <div class=" container bg-gray-100 p-4">
+        <App client:only="react" basePath="/app"></App>
+
+    </div>
+ 
+</Layout>
