@@ -9,6 +9,27 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react(),
   ],
+  //IMPORTANTE PARA LAS RUTAS REACTR
+  output: 'server', 
+  // Si necesitas comportamiento híbrido (algunas páginas pre-renderizadas)
+  // puedes usar la opción prerender:
+  prerender: {
+    // Estas páginas se pre-renderizarán en build time
+    entries: ['/', '/blog', '/about']
+  },
+    // Las redirecciones funcionan diferente en Astro 5
+    redirects: {
+      '/app/*': '/app',
+      '/auth/*': '/auth'
+    },
+  vite: {
+    plugins: [tailwindcss()]
+  }
+});
+
+
+
+
 //ESENCIAL PARA QUE FUNCIONE EL REACT ROUTER
  /* output:'static',
   server: {
@@ -30,7 +51,3 @@ export default defineConfig({
   build: {
     client: './dis/client'
   }, */
-  vite: {
-    plugins: [tailwindcss()]
-  }
-});
